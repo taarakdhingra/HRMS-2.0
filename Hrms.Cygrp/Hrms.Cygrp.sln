@@ -1,0 +1,69 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.329
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Hrms.Cygrp", "Hrms.Cygrp\", "{B898BDC5-93B5-4BE4-9A8E-CACDDDF2A0C6}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.1"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_8570"
+		Debug.AspNetCompiler.PhysicalPath = "Hrms.Cygrp\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_8570\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_8570"
+		Release.AspNetCompiler.PhysicalPath = "Hrms.Cygrp\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_8570\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "8570"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EmployeeService", "EmployeeService", "{05216215-E948-4395-BE6F-DE8C2DD343E7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LeaveService", "LeaveService", "{6E310721-2F4A-46DB-8D93-5462E9BA8750}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProjectService", "ProjectService", "{BA6EAD26-D611-4666-BCFE-65738620DA97}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReviewService", "ReviewService", "{5A506168-B545-4050-8FF1-F982C1256BAA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UserService", "UserService", "{FD588BA9-3A39-4B03-9988-5FDF1DEAFAA5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PolicyService", "PolicyService", "{736EADF1-66F5-4F16-A45C-3891DD5FAC80}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DatabaseService", "DatabaseService", "{04D66ABA-939D-48C9-AB07-B8B8910D75D2}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Database.Hrms.Cygrp", "Database.Hrms.Cygrp\Database.Hrms.Cygrp.sqlproj", "{BF171AD4-7C60-46DE-98D8-AD2E4F6D1308}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B898BDC5-93B5-4BE4-9A8E-CACDDDF2A0C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B898BDC5-93B5-4BE4-9A8E-CACDDDF2A0C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B898BDC5-93B5-4BE4-9A8E-CACDDDF2A0C6}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{B898BDC5-93B5-4BE4-9A8E-CACDDDF2A0C6}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{BF171AD4-7C60-46DE-98D8-AD2E4F6D1308}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF171AD4-7C60-46DE-98D8-AD2E4F6D1308}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF171AD4-7C60-46DE-98D8-AD2E4F6D1308}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{BF171AD4-7C60-46DE-98D8-AD2E4F6D1308}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF171AD4-7C60-46DE-98D8-AD2E4F6D1308}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF171AD4-7C60-46DE-98D8-AD2E4F6D1308}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BF171AD4-7C60-46DE-98D8-AD2E4F6D1308} = {04D66ABA-939D-48C9-AB07-B8B8910D75D2}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {200F122D-561D-4622-B407-49D7D4934B89}
+	EndGlobalSection
+EndGlobal
