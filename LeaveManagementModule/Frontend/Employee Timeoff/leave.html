@@ -1,27 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
- <title>Leave Management</title>
+<title>Leave Management</title>
 <link rel="shortcut icon" type="image/png" href="logo 1.png">
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
-
 </script>
 
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js">
-
 </script>
 
 <style>
 .navi {margin-bottom:0;
-      
          border-radius:0;
          background-color:black;
         }
@@ -50,22 +47,22 @@
               }     
     .a{
         color:white;
-    }
+      }
+    
+    
     .tb{
-        margin-left:150px;
-        margin-right:150px;
+        margin-left:100px;
+        margin-right:100px;
         background-color: white;
-        margin-bottom:100px;
     }
     .b{
-        font-size:20px;
+        font-size:15px;
     }
     .b:hover{
-        background: red;
+        background:lavender;
     }
     
 footer  { background-color: darkblue;
-
           color: white;
           padding: 15px;
         }
@@ -109,10 +106,7 @@ footer  { background-color: darkblue;
 
 </div>
 
-
-
 <nav class="navbar navi">
-
 <div class="container-fluid">
 
 
@@ -135,7 +129,7 @@ footer  { background-color: darkblue;
 </nav>
 
 
-<div class="container-fluid text-center">
+<div class="container-fluid">
 <div class="row content">
 
 <div class="col-sm-12">
@@ -143,45 +137,169 @@ footer  { background-color: darkblue;
 
 <div class="well well-lg">
     <br><br>
-<h1 class="h"><i class="fas fa-bed"> Personal Time Off</i></h1>
+<h1 class="h text-center"><i class="fas fa-bed"> Personal Time Off</i></h1>
 
-    <div class="cont">
+    <div class="cont text-center">
         (Name)
     </div>
     <br><br><br>
     <div class="tb">
-        <nav class="navbar">
-            <div class="container-fluid">
-            <ul class="nav">
-        <li class="nav-item"> <a class="nav-link b" href="#">My Requests
-            </a></li>
-        <li class="nav-item"> <a class="nav-link b" href="#">Remaining Balance
-            </a></li>
-        <li class="nav-item"> <a class="nav-link b" href="#">Open Requests
-            </a></li>
-        <li class="nav-item"> <a class="nav-link b" href="#">Closed Requests
-            </a></li>
-        <li class="nav-item"> <a class="nav-link b" href="#">Holiday List
-            </a></li>
-            </ul>    
-            </div>    
-        </nav>
+        <br>
+        <div class="container-fluid">
+        
+        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active b" id="pills-request-tab" data-toggle="pill" href="#pills-request" role="tab" aria-controls="pills-request" aria-selected="true">My Requests</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link b" id="pills-remain-tab" data-toggle="pill" href="#pills-remain" role="tab" aria-controls="pills-remain" aria-selected="false">Remaining Balance</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link b" id="pills-open-tab" data-toggle="pill" href="#pills-open" role="tab" aria-controls="pills-open" aria-selected="false">Open Requests</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link b" id="pills-closed-tab" data-toggle="pill" href="#pills-closed" role="tab" aria-controls="pills-closed" aria-selected="false">Closed Requests</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link b" id="pills-holiday-tab" data-toggle="pill" href="#pills-holiday" role="tab" aria-controls="pills-holiday" aria-selected="false">Holiday List</a>
+  </li>
+</ul>
+<div class="tab-content" id="pills-tabContent">
+  <div class="tab-pane fade show active" id="pills-request" role="tabpanel" aria-labelledby="pills-request-tab"><br>
+  <button type="button" class="btn btn-success">+ Request Time Off</button>
+  <div class="table-responsive">
+      <br><br>
+  <table id="my-request-table" class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Starting</th>
+        <th>Ending</th>
+        <th>No of Days</th>
+        <th>Status</th>
+        <th>By</th>
+        <th>Request Sent To</th>
+      </tr>
+    </thead>
+    <tbody>
+     <!-- <tr>
+        <td>Medical</td>
+        <td>21/01/2019</td>
+        <td>22/01/2019</td>
+        <td>2</td>
+        <td>Approved</td>
+        <td>25/01/2019</td>
+        <td>Manager</td>
+      </tr>
+      <tr>
+        <td>Earned Leave</td>
+        <td>20/02/2019</td>
+        <td>22/02/2019</td>
+        <td>3</td>
+        <td>Approved</td>
+        <td>18/02/2019</td>
+        <td>Manager</td>
+      </tr>
+      <tr>
+        <td>Casual</td>
+        <td>10/03/2019</td>
+        <td>11/03/2019</td>
+        <td>2</td>
+        <td>Pending</td>
+        <td>-</td>
+        <td>Manager</td>
+      </tr>-->
+    </tbody>
+  </table>
+      </div>
+  </div>
+  <div class="tab-pane fade" id="pills-remain" role="tabpanel" aria-labelledby="pills-remain-tab"> 
+  <div class="table-responsive">
+      <br><br>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Starting</th>
+        <th>Ending</th>
+        <th>No of Days</th>
+        <th>Status</th>
+        <th>By</th>
+        <th>Request Sent To</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Medical</td>
+        <td>21/01/2019</td>
+        <td>22/01/2019</td>
+        <td>2</td>
+        <td>Approved</td>
+        <td>25/01/2019</td>
+        <td>Manager</td>
+      </tr>
+      <tr>
+        <td>Earned Leave</td>
+        <td>20/02/2019</td>
+        <td>22/02/2019</td>
+        <td>3</td>
+        <td>Approved</td>
+        <td>18/02/2019</td>
+        <td>Manager</td>
+      </tr>
+      <tr>
+        <td>Casual</td>
+        <td>10/03/2019</td>
+        <td>11/03/2019</td>
+        <td>2</td>
+        <td>Pending</td>
+        <td>-</td>
+        <td>Manager</td>
+      </tr>
+    </tbody>
+  </table>
+      </div>  
+  </div>
+  <div class="tab-pane fade" id="pills-open" role="tabpanel" aria-labelledby="pills-open-tab"> Open </div>
+  <div class="tab-pane fade" id="pills-closed" role="tabpanel" aria-labelledby="pills-closed-tab"> Closed </div>
+  <div class="tab-pane fade" id="pills-holiday" role="tabpanel" aria-labelledby="pills-holiday-tab"> Holidays </div>
+
+</div>
+    </div>
     </div>
 </div><br>
-</div>
-</div>
-
-
-</div>
-
-
-<footer class="container-fluid text-center">
+<footer class="text-center">
 <p>Website Designed and Managed by Cyber Group</p>
-
-</footer>
-
-
-
+</footer>    
+</div>
+</div>
+</div>
 </body>
-
+    <script>
+        $.ajax({
+            url:"",
+            type:"Get",
+            success: function(data){
+             data.forEach(function(element){
+              $('<tr><td>'+element.type+'</td><td>'+element.startDate+'</td><td>'+element.endDate+'</td><td>'+element.nDays+'</td><td>'+element.status+'</td><td>'+element.by+'</td><td>'+element.request+'</td></tr>').appendTo('#my-request-table tbody');            
+        })
+        }
+            
+        });
+        
+        
+        var data = [{ "type":'Medical',"startDate" : '21/01/2019', "endDate" : '22/01/2019', "nDays":'2',"status":'Approved',"by":'25/01/2019',"request":'Manager'},
+                   { "type":'Medical',"startDate" : '21/01/2019', "endDate" : '22/01/2019', "nDays":'2',"status":'Approved',"by":'25/01/2019',"request":'Manager'}
+                   ,{ "type":'Medical',"startDate" : '21/01/2019', "endDate" : '22/01/2019', "nDays":'2',"status":'Approved',"by":'25/01/2019',"request":'Manager'},
+                    { "type":'Medical',"startDate" : '21/01/2019', "endDate" : '22/01/2019', "nDays":'2',"status":'Approved',"by":'25/01/2019',"request":'Manager'},
+                    { "type":'Medical',"startDate" : '21/01/2019', "endDate" : '22/01/2019', "nDays":'2',"status":'Approved',"by":'25/01/2019',"request":'Manager'}
+                   ];
+        
+        data.forEach(function(element){
+              $('<tr><td>'+element.type+'</td><td>'+element.startDate+'</td><td>'+element.endDate+'</td><td>'+element.nDays+'</td><td>'+element.status+'</td><td>'+element.by+'</td><td>'+element.request+'</td></tr>').appendTo('#my-request-table tbody');            
+        })
+      
+        
+        
+    </script>
 </html>
