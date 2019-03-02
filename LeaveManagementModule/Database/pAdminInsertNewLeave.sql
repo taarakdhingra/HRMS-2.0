@@ -1,3 +1,6 @@
+/*admin can add a particular type of leave ,for that all the details as well as conditions have to be given*/
+
+
 create procedure pAdminInsertNewLeave @LeaveId int,@LeaveType varchar(100),
 @MaxConsecutiveLeaves int,@TotalLeaves int,@Description varchar(1000)
 AS 

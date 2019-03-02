@@ -1,4 +1,5 @@
-
+/*procedure have certain conditions which must be fulfilled for an employee to raise a leave request.
+calling another stored procedure named leave update where employee raises a leave request and records manipulation is done*/
 create procedure pConditionForLeave
 @EmployeeId int,@LeaveId int,@StartDate DATE, @EndDate DATE
 
