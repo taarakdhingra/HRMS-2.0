@@ -13,6 +13,6 @@ WHERE ProjectTeamDetails.ProjectID = @Projectid
 End
  
 
- EXEC pEmployeesandRoles 1;
+EXEC pEmployeesandRoles 1;
 EXEC pEmployeesandRoles 2;
  

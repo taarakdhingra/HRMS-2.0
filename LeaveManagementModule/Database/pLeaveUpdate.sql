@@ -2,11 +2,11 @@
 that particular leave type */
 /*NOT an independent procedure,this procedure has been executed in the condition of leave as before generating a 
 leave request ,filters like max consecutive leaves ,balance must be satisfied*/
-create procedure pLEaveUpdate1 
+create procedure pLeaveUpdate1 
 
-@EmployeeId int,@LeaveId int , @StartDate DATE, @EndDate DATE,@Reason varchar(1000),
- @BalanceLeaveOut int output,
- @LeavesTakenOut int output
+@EmployeeId int,@LeaveId int , @StartDate DATE, @EndDate DATE,@Reason varchar(200),
+@BalanceLeaveOut int output,
+@LeavesTakenOut int output
 
 AS 
 BEGIN
@@ -15,9 +15,9 @@ SET @vForBalance=(select Balance from tBalanceAccount where EmployeeId=@Employee
 SET @vForLeavesTaken=(select LeavesTaken from tBalanceAccount where EmployeeId=@EmployeeId AND LeaveId=@LeaveId);
 
 /*for updating table,datediff used to know the no of leaves being taken*/
-Update tBalanceAccount set Balance=@vForBalance-(DATEDIFF(Day,@StartDate,@EndDate)) where EmployeeId=@EmployeeId AND LeaveId=@LeaveId;
+Update tBalanceAccount set Balance= @vForBalance-(DATEDIFF(Day,@StartDate,@EndDate) - dbo.fWeekendCount(@StartDate,@EndDate))  where EmployeeId=@EmployeeId AND LeaveId=@LeaveId;
 set @BalanceLeaveOut=@vForBalance;
-Update tBalanceAccount set LeavesTaken=@vForLeavesTaken +  ( DATEDIFF(Day,@StartDate,@EndDate)) where EmployeeId=@EmployeeId AND LeaveId=@LeaveId ;
+Update tBalanceAccount set LeavesTaken= @vForLeavesTaken +  (DATEDIFF(Day,@StartDate,@EndDate) - dbo.fWeekendCount(@StartDate,@EndDate)) where EmployeeId=@EmployeeId AND LeaveId=@LeaveId ;
 set @LeavesTakenOut=@vForLeavesTaken;
 Update tEmployeeLeaves set Reason=@Reason where EmployeeId=@EmployeeId AND LeaveId=@LeaveId;
 insert into tEmployeeLeaves(EmployeeId,LeaveId,Status,StartDate,EndDate,RequestTime) 
@@ -29,6 +29,6 @@ END
  @BalanceLeaveOut=@odForBalance output,@LeavesTakenOut=@odForLeavesTaken output;*/
  /*please un-comment the above statement ,to execute it.changes would be shown in the table*/
  
- /*select * from tEmployeeLeaves;
- select * from tBalanceAccount;*/
+--  select * from tEmployeeLeaves;
+--  select * from tBalanceAccount;
 
