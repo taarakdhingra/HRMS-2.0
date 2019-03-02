@@ -17,11 +17,12 @@ SET @vForLeavesTaken=(select LeavesTaken from tBalanceAccount where EmployeeId=@
 /*for updating table,datediff used to know the no of leaves being taken*/
 Update tBalanceAccount set Balance= @vForBalance-(DATEDIFF(Day,@StartDate,@EndDate) - dbo.fWeekendCount(@StartDate,@EndDate))  where EmployeeId=@EmployeeId AND LeaveId=@LeaveId;
 set @BalanceLeaveOut=@vForBalance;
-Update tBalanceAccount set LeavesTaken= @vForLeavesTaken +  (DATEDIFF(Day,@StartDate,@EndDate) - dbo.fWeekendCount(@StartDate,@EndDate)) where EmployeeId=@EmployeeId AND LeaveId=@LeaveId ;
+Update tBalanceAccount set LeavesTaken= @vForLeavesTaken + (DATEDIFF(Day,@StartDate,@EndDate) - dbo.fWeekendCount(@StartDate,@EndDate)) where EmployeeId=@EmployeeId AND LeaveId=@LeaveId ;
 set @LeavesTakenOut=@vForLeavesTaken;
 Update tEmployeeLeaves set Reason=@Reason where EmployeeId=@EmployeeId AND LeaveId=@LeaveId;
-insert into tEmployeeLeaves(EmployeeId,LeaveId,Status,StartDate,EndDate,RequestTime) 
+insert into tEmployeeLeaves(EmployeeId,LeaveId,Status,StartDate,EndDate,RequestTime)
 values(@EmployeeId,@LeaveId,'pending',@StartDate,@EndDate,GETDATE()) 
+EXEC pInsertEmployeeLeaves @EmployeeId,@LeaveId,'pending',@StartDate,@EndDate,@Reason
 END
 
 /*declare @odForBalance int,@odForLeavesTaken int
@@ -32,3 +33,4 @@ END
 --  select * from tEmployeeLeaves;
 --  select * from tBalanceAccount;
 
+-- drop PROCEDURE pLeaveUpdate1

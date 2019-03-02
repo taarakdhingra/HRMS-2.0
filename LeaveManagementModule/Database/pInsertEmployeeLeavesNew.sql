@@ -1,7 +1,12 @@
 /*for generating leave request by the user*/
 create procedure pInsertEmployeeLeaves
 
-@EmployeeId int,@LeaveId int,@Status varchar(30),@StartDate DATE,@EndDate DATE,@Reason varchar(1000)
+@EmployeeId int,
+@LeaveId int,
+@Status varchar(30),
+@StartDate DATE,
+@EndDate DATE,
+@Reason varchar(200)
 
 AS
 BEGIN
@@ -9,7 +14,6 @@ BEGIN
 declare @vForStoringRoleId int;
 SET @vForStoringRoleId=(SELECT EmployeeID from ProjectTeamDetails where ProjectID IN
  (select ProjectID from ProjectTeamDetails where EmployeeID=@EmployeeId) AND RoleID =2);
-
 insert into tEmployeeLeaves values(@EmployeeId,@LeaveId,@Status,@StartDate,@EndDate,@Reason,getdate(),@vForStoringRoleId);
 END
 /*un-comment the below statement to execute and see functioning of the procedure.
