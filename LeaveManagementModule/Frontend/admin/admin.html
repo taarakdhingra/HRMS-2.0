@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <title>HRMS 2.0 CYGRP</title>
+        <script src="config.js"></script>
+
+        <style>
+            .table-container{
+                margin:50px auto;
+            }
+            .request-timeoff-btn{
+                margin: 10px 0px;
+            }
+            .leave-nav{
+                box-shadow: 0px 2px 2px 0px lightgrey;
+            }
+            .logout-navbar{
+                margin-right: 20px;
+            }
+            .leave-request-form{
+                margin: 0px 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light leave-nav">
+            <a class="navbar-brand" href="#">
+                <img src="logo.png" width="150" height="40" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Leave</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Policy</a>
+                    </li>
+
+                </ul>
+                <ul class="navbar-nav logout-navbar" >
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Dropdown
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Username</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Logout</a>
+                        </div>
+                    </li>
+
+                </ul>
+               
+            </div>
+             <!-- Below Header   -->
+        </nav>
+        <div class="table-container container">
+           
+               
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-requests" role="tabpanel" aria-labelledby="pills-requests-tab">
+                    <button type="button" class="request-timeoff-btn btn btn-secondary" data-toggle="modal" data-target="#exampleModal">Add New Type</button>
+                    <div class="table-responsive">
+                        <table id="my-request-table" class=" table">
+                            <thead>
+                                <tr>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Total</th>
+                                    <th>Maximum Consecutive Leaves</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                            </li>
+                            <li class="page-item"><span class="page-link" href="#">1</span></li>
+                            <li class="page-item"><span class="page-link" href="#">2</span></li>
+                            <li class="page-item"><span class="page-link" href="#">3</span></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                
+               
+               
+               
+            </div>
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Add New Leave Type</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="leave-request-form">
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label">Leave Type</label>
+                                    <textarea class="form-control" id="message-text"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label">Total</label>
+                                    <input type="number" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label">Maximum Consecutive Leaves</label>
+                                    <input type="number" class="form-control">
+                                </div>
+                               
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Confirm</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Edit the Details</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="leave-request-form">
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label">Leave Type</label>
+                                    <textarea class="form-control" id="message-text"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label">Total</label>
+                                    <input type="number" class="form-control" placeholder=10>
+                                </div>
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label">Maximum Consecutive Leaves</label>
+                                    <input type="number" class="form-control" placeholder=4>
+                                </div>
+                               
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Confirm</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        
+        
+            <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="leave-request-form">
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label">Are you sure you want to delete ?</label>
+                                    
+                                </div>
+                               
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Confirm</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        <!-- Optional JavaScript -->
+
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script
+                src="https://code.jquery.com/jquery-3.3.1.min.js"
+                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+                crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+        <script>
+           var data = [{ "type":'Casual Leave',"total" : '10', "MaxConsLeave" : '4', "Edit":'<button type="button" class="btn btn-success" data-toggle="modal" data-target="#editModal"> Edit </button>',"Delete":'<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button>'},
+                       { "type":'Sick Leave',"total" : '10', "MaxConsLeave" : '4', "Edit":'<button type="button" class="btn btn-success" data-toggle="modal" data-target="#editModal"> Edit </button>',"Delete":'<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button>'},
+                       { "type":'Earned Leave',"total" : '10', "MaxConsLeave" : '4', "Edit":'<button type="button" class="btn btn-success" data-toggle="modal" data-target="#editModal"> Edit </button>',"Delete":'<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button>'},
+                       { "type":'Leave Without Pay',"total" : '10', "MaxConsLeave" : '4', "Edit":'<button type="button" class="btn btn-success" data-toggle="modal" data-target="#editModal"> Edit </button>',"Delete":'<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button>'},
+                       { "type":'Maternity Leave',"total" : '10', "MaxConsLeave" : '4', "Edit":'<button type="button" class="btn btn-success" data-toggle="modal" data-target="#editModal"> Edit </button>',"Delete":'<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button>'},
+                       { "type":'Casual',"total" : '10', "MaxConsLeave" : '4', "Edit":'<button type="button" class="btn btn-success" data-toggle="modal" data-target="#editModal"> Edit </button>',"Delete":'<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button>'},
+                       { "type":'Marital Leave',"total" : '10', "MaxConsLeave" : '4', "Edit":'<button type="button" class="btn btn-success" data-toggle="modal" data-target="#editModal"> Edit </button>',"Delete":'<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button>'}
+                  
+                   ];
+        
+        data.forEach(function(element){
+              $('<tr><td>'+element.type+'</td><td>'+element.total+'</td><td>'+element.MaxConsLeave+'</td><td>'+element.Edit+'</td><td>'+element.Delete+'</td><td>').appendTo('#my-request-table tbody');            
+        })
+        </script>
+
+    </body>
+</html>
