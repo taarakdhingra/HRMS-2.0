@@ -1,4 +1,4 @@
-function leavedeletion(){
+function leaveDeletion(){
 
 var leaveidfetch=localStorage.getItem("LeaveId");
 
@@ -11,7 +11,7 @@ var leaveidfetch=localStorage.getItem("LeaveId");
     success: function(data) {
         alert("DATA DELETED SUCCESSFULLY");
         
-            function leavesdisplay();
+            function leavesDisplay();
 
     }
   
@@ -20,4 +20,36 @@ var leaveidfetch=localStorage.getItem("LeaveId");
 
 
 }
+
+
+
+function newLeave(){
+
+  var leave=document.getElementById('new-leave-type').value;
+  var addleaves=document.getElementById('total-leaves-add').value;
+  var maxleaves=document.getElementById('max-leaves-add').value;
+
+  
+  var PostingData={
+            "LeaveType": leave,
+            "TotalLeaves": addleaves,
+            "MaxConsecutiveLeaves":maxleaves,
+            
+
+
+
+  }
+    $.ajax({
+        type: 'POST',
+        url: //'http://localhost:64490/api/MOCK URL',
+        data:PostingData,  
+            success: function(data) {
+        alert("SUCCESSFUL SUBMISSION OF NEW LEAVE TYPE");
+       
+      }
+    });
+  }
+    
+  
+
     
