@@ -15,19 +15,25 @@ var employee = {
         res.send(sGrid.send());
     },
     'createLeave' : (req,res) => {
+        console.log("here");
         if(!req.params.id)
         { res.status(400).json({
              message : "Employee Id Required",
          }); 
          } 
          sql.connect(mssqlConfig).then(() => {
-             return sql.query('select * from EmployeeLeaves where id = 1');
+             return sql.query('select * from fUserLeaveBalance('+ req.params.id +')');
          }).then(result => {
              res.status(201).json({"message" : "leave request created"});
-             console.dir(result)
+             console.dir(result.recordsets.length)
+             sql.close();
          }).catch(err => {
              // ... error checks
+             sql.close();
+             res.send(err);
+
          })
+         
     },
     'getLeaves' : (req,res) => {
       
@@ -74,19 +80,30 @@ var employee = {
              message : "Employee Id Required",
          }); 
          } 
+         sql.connect(mssqlConfig).then(() => {
+            return sql.query('select * from fUserLeaveBalance('+ req.params.id +')');
+        }).then(result => {
+            res.status(201).json({"status": 1,"message" : "balance leaves","employeeBalanceLeaves":result.recordsets[0]});
+            sql.close();
+            console.dir(result.recordsets[0])
+        }).catch(err => {
+            // ... error checks
+            sql.close();
+            res.send(err);
+        })
          
-         var data = [
-         { "type":'Casual Leave',"total" : 10 , "balance" : 10 , "pending":0,"approved":0,"rejected":0},
-         { "type":'Sick Leave',"total" : 15 , "balance" : 15 , "pending":0,"approved":0,"rejected":0},
-         { "type":'Earned Leave',"total" : 15 , "balance" : 15 , "pending":0,"approved":0,"rejected":0},
-         { "type":'Leave Without Pay',"total" : 0 , "balance" : 0 , "pending":0,"approved":0,"rejected":0},
-         { "type":'Marital Leave',"total" : 5 , "balance" : 5 , "pending":0,"approved":0,"rejected":0},
-         { "type":'Breavement Leave',"total" : 3 , "balance" : 3 , "pending":0,"approved":0,"rejected":0},  
-         { "type":'Work From Leave',"total" : 0 , "balance" : 0 , "pending":0,"approved":0,"rejected":0}
-        ];
+        //  var data = [
+        //  { "type":'Casual Leave',"total" : 10 , "balance" : 10 , "pending":0,"approved":0,"rejected":0},
+        //  { "type":'Sick Leave',"total" : 15 , "balance" : 15 , "pending":0,"approved":0,"rejected":0},
+        //  { "type":'Earned Leave',"total" : 15 , "balance" : 15 , "pending":0,"approved":0,"rejected":0},
+        //  { "type":'Leave Without Pay',"total" : 0 , "balance" : 0 , "pending":0,"approved":0,"rejected":0},
+        //  { "type":'Marital Leave',"total" : 5 , "balance" : 5 , "pending":0,"approved":0,"rejected":0},
+        //  { "type":'Breavement Leave',"total" : 3 , "balance" : 3 , "pending":0,"approved":0,"rejected":0},  
+        //  { "type":'Work From Leave',"total" : 0 , "balance" : 0 , "pending":0,"approved":0,"rejected":0}
+        // ];
 
         
-         res.json({"leaves":data});
+        //  res.json({"leaves":data});
 
     },    
     'getHolidaysList' : (req,res)=>{
