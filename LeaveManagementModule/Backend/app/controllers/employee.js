@@ -22,10 +22,24 @@ var employee = {
          }); 
          } 
          sql.connect(mssqlConfig).then(() => {
-             return sql.query('select * from fUserLeaveBalance('+ req.params.id +')');
+             const request = new sql.Request();
+             console.log(req.body.employeeId)
+             console.log(req.body.leaveId)
+             console.log(req.body.startDate)
+             console.log(req.body.endDate)
+             console.log(req.body.reason)
+             request.input('EmployeeId',sql.Int,req.body.employeeId);
+             request.input('LeaveId',sql.Int,req.body.leaveId);
+             request.input('StartDate',sql.Date,req.body.startDate);
+             request.input('EndDate',sql.Date,req.body.endDate);
+             request.input('Reason',sql.VarChar(200),req.body.reason);
+             request.output('Status',sql.Int);
+             request.output('Message',sql.VarChar(200))
+             return request.execute('pConditionForLeave');
+
          }).then(result => {
-             res.status(201).json({"message" : "leave request created"});
-             console.dir(result.recordsets.length)
+             res.status(result.output.Status == 1?201:400).json({'status' : result.output.Status , 'message' : result.output.Message});
+             console.dir(result.output)
              sql.close();
          }).catch(err => {
              // ... error checks
