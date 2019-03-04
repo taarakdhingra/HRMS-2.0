@@ -1,0 +1,17 @@
+
+            .table-container{
+                margin:50px auto;
+            }
+            .request-timeoff-btn{
+                margin: 10px 0px;
+            }
+            .leave-nav{
+                box-shadow: 0px 2px 2px 0px lightgrey;
+            }
+            .logout-navbar{
+                margin-right: 20px;
+            }
+            .leave-request-form{
+                margin: 0px 10px;
+            }
+        

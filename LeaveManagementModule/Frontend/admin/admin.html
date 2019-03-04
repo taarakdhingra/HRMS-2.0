@@ -4,29 +4,22 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+        <link href="adminstyle.css" rel="stylesheet">
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <title>HRMS 2.0 CYGRP</title>
-        <script src="config.js"></script>
+       
 
-        <style>
-            .table-container{
-                margin:50px auto;
-            }
-            .request-timeoff-btn{
-                margin: 10px 0px;
-            }
-            .leave-nav{
-                box-shadow: 0px 2px 2px 0px lightgrey;
-            }
-            .logout-navbar{
-                margin-right: 20px;
-            }
-            .leave-request-form{
-                margin: 0px 10px;
-            }
-        </style>
+
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script
+                src="https://code.jquery.com/jquery-3.3.1.min.js"
+                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+                crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="admin.js"></script>
+       
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light leave-nav">
@@ -123,22 +116,22 @@
                             <form class="leave-request-form">
                                 <div class="form-group">
                                     <label for="recipient-name" class="col-form-label">Leave Type</label>
-                                    <textarea class="form-control" id="message-text"></textarea>
+                                    <textarea class="form-control" id="new-leavel-type"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="recipient-name" class="col-form-label">Total</label>
-                                    <input type="number" class="form-control">
+                                    <input type="number" class="form-control" id="total-leaves-add">
                                 </div>
                                 <div class="form-group">
                                     <label for="recipient-name" class="col-form-label">Maximum Consecutive Leaves</label>
-                                    <input type="number" class="form-control">
+                                    <input type="number" class="form-control" id="max-leaves-add">
                                 </div>
                                
                             </form>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Confirm</button>
+                            <button type="button" class="btn btn-primary" onclick="newLeave()">Confirm</button>
                         </div>
                     </div>
                 </div>
@@ -157,15 +150,15 @@
                             <form class="leave-request-form">
                                 <div class="form-group">
                                     <label for="recipient-name" class="col-form-label">Leave Type</label>
-                                    <textarea class="form-control" id="message-text"></textarea>
+                                    <textarea class="form-control" id="leave-type"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="recipient-name" class="col-form-label">Total</label>
-                                    <input type="number" class="form-control" placeholder=10>
+                                    <input type="number" class="form-control" placeholder=10 id="total-leaves-edit">
                                 </div>
                                 <div class="form-group">
                                     <label for="recipient-name" class="col-form-label">Maximum Consecutive Leaves</label>
-                                    <input type="number" class="form-control" placeholder=4>
+                                    <input type="number" class="form-control" placeholder=4 id="max-leaves-edit"> 
                                 </div>
                                
                             </form>
@@ -200,23 +193,15 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Confirm</button>
+                            <button type="button" class="btn btn-primary" onclick="leaveDeletion()" >Confirm</button>
                         </div>
                     </div>
                 </div>
             </div>
             
-        <!-- Optional JavaScript -->
+      
 
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script
-                src="https://code.jquery.com/jquery-3.3.1.min.js"
-                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-                crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
-
+            
         <script>
            var data = [{ "type":'Casual Leave',"total" : '10', "MaxConsLeave" : '4', "Edit":'<button type="button" class="btn btn-success" data-toggle="modal" data-target="#editModal"> Edit </button>',"Delete":'<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button>'},
                        { "type":'Sick Leave',"total" : '10', "MaxConsLeave" : '4', "Edit":'<button type="button" class="btn btn-success" data-toggle="modal" data-target="#editModal"> Edit </button>',"Delete":'<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button>'},
@@ -232,6 +217,69 @@
               $('<tr><td>'+element.type+'</td><td>'+element.total+'</td><td>'+element.MaxConsLeave+'</td><td>'+element.Edit+'</td><td>'+element.Delete+'</td><td>').appendTo('#my-request-table tbody');            
         })
         </script>
+
+   
+ <!--SCRIPT TO ADD ROWS DYNAMICALLY -->
+    <script type="text/javascript">
+        
+            function openEdit(LeaveId)
+ {
+    localStorage.setItem("LeaveId",LeaveId);
+   
+}
+$(window).ready(function(){
+    function leavesDisplay()
+
+{
+ $.ajax({
+      type: 'GET',
+      url:// 'http://localhost:64490/api/MOCK URL',
+      success: function(data) {
+        
+    
+        addRows(data)
+      }
+    });
+
+}   function addRows()
+{
+
+    console.log(data);
+     for(i=0;i<data.length;i++)
+        $('<tr><td>'+element.type+'</td><td>'+element.total+'</td><td>'+element.MaxConsLeave+'</td><td>'+element.Edit+'</td><td>'+element.Delete+'</td><td>').appendTo('#my-request-table tbody');
+
+
+}
+javascript:leavesDisplay();
+       
+
+});
+
+
+    </script>
+
+    <!--TO FETCH THE MAX CONSECUTIVE,LEAVE TYPE AND  TOTAL LEAVES
+     OF A PARTICULAR LEAVE ID WHEN ADMIN CLICKS ON EDIT BUTTON-->
+
+    <script type="text/javascript">
+        var leaveidfetch=localStorage.getItem("LeaveId");
+             $.ajax({
+      type: 'GET',
+      url: //'http://localhost:64490/api/MOCK URL/' + leaveidfetch,
+      success: function(data) {
+        valuestore = data;
+        document.getElementById("leave-type").innerHTML=data.LeaveType;
+        document.getElementById("total-leaves-edit").innerHTML=data.TotalLeaves;
+        document.getElementById("max-leaves-edit").innerHTML = data.MaxConsecutiveLeaves; 
+       
+      }
+    });
+
+
+        </script>
+
+
+   
 
     </body>
 </html>
