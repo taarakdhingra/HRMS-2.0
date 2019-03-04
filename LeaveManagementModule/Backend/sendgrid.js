@@ -1,11 +1,11 @@
 const sgMail = require('@sendgrid/mail');
-const config = require('./config/sendgrid')
+// const config = require('./config/sendgrid')
 
 
 methods = {
  'send' : () => {
 
-    sgMail.setApiKey(config.SENDGRID_API_KEY);
+    // sgMail.setApiKey(config.SENDGRID_API_KEY);
     const msg = {
         to: 'rishabh.gupta@cygrp.com',
         from: 'rishabh.gupta@cygrp.com',
