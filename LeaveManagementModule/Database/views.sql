@@ -7,7 +7,7 @@ create function fUserLeaveDetail(@EmployeeId int,@LeaveId int)
 returns TABLE
 AS
 RETURN 
-select tBalanceAccount.EmployeeId,tLeaves.LeaveId,tLeaves.LeaveType,tEmployeeLeaves.StartDate,
+select tLeaves.LeaveType,tEmployeeLeaves.StartDate,
 tEmployeeLeaves.EndDate,tEmployeeLeaves.Status from tBalanceAccount 
 INNER JOIN
 tLeaves ON tLeaves.LeaveId=
@@ -16,7 +16,7 @@ INNER JOIN
 tEmployeeLeaves on tBalanceAccount.LeaveId=tEmployeeLeaves.LeaveId 
 AND tEmployeeLeaves.EmployeeId=tBalanceAccount.EmployeeId 
 where tBalanceAccount.EmployeeId=@EmployeeId AND tEmployeeLeaves.LeaveId=@LeaveId;
-
+ 
 select * from fUserLeaveDetail(2,2);
 
 /* function for leave details*/
@@ -67,6 +67,7 @@ select * from tBalanceAccount;
 select * from tEmployeeLeaves
 select * from tLeaves;
 select * from Employee;
+select * from ProjectTeamDetails;
  
 
 
