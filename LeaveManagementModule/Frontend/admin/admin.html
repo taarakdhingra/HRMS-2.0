@@ -68,9 +68,9 @@
                 <div class="tab-pane fade show active" id="pills-requests" role="tabpanel" aria-labelledby="pills-requests-tab">
                     <button type="button" class="request-timeoff-btn btn btn-secondary" data-toggle="modal" data-target="#exampleModal">Add New Type</button>
                     <div class="table-responsive">
-                        <table id="my-request-table" class=" table">
+                        <table id="my-request-table" class=" table table-striped table-hover">
                             <thead>
-                                <tr>
+                                
                                 <tr>
                                     <th>Type</th>
                                     <th>Total</th>
@@ -154,11 +154,13 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="recipient-name" class="col-form-label">Total</label>
-                                    <input type="number" class="form-control" placeholder=10 id="total-leaves-edit">
+
+                                    <input type="number" class="form-control" >
                                 </div>
                                 <div class="form-group">
                                     <label for="recipient-name" class="col-form-label">Maximum Consecutive Leaves</label>
-                                    <input type="number" class="form-control" placeholder=4 id="max-leaves-edit"> 
+                                    <input type="number" class="form-control" >
+
                                 </div>
                                
                             </form>
@@ -203,18 +205,18 @@
 
             
         <script>
-           var data = [{ "type":'Casual Leave',"total" : '10', "MaxConsLeave" : '4', "Edit":'<button type="button" class="btn btn-success" data-toggle="modal" data-target="#editModal"> Edit </button>',"Delete":'<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button>'},
-                       { "type":'Sick Leave',"total" : '10', "MaxConsLeave" : '4', "Edit":'<button type="button" class="btn btn-success" data-toggle="modal" data-target="#editModal"> Edit </button>',"Delete":'<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button>'},
-                       { "type":'Earned Leave',"total" : '10', "MaxConsLeave" : '4', "Edit":'<button type="button" class="btn btn-success" data-toggle="modal" data-target="#editModal"> Edit </button>',"Delete":'<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button>'},
-                       { "type":'Leave Without Pay',"total" : '10', "MaxConsLeave" : '4', "Edit":'<button type="button" class="btn btn-success" data-toggle="modal" data-target="#editModal"> Edit </button>',"Delete":'<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button>'},
-                       { "type":'Maternity Leave',"total" : '10', "MaxConsLeave" : '4', "Edit":'<button type="button" class="btn btn-success" data-toggle="modal" data-target="#editModal"> Edit </button>',"Delete":'<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button>'},
-                       { "type":'Casual',"total" : '10', "MaxConsLeave" : '4', "Edit":'<button type="button" class="btn btn-success" data-toggle="modal" data-target="#editModal"> Edit </button>',"Delete":'<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button>'},
-                       { "type":'Marital Leave',"total" : '10', "MaxConsLeave" : '4', "Edit":'<button type="button" class="btn btn-success" data-toggle="modal" data-target="#editModal"> Edit </button>',"Delete":'<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button>'}
+           var data = [{"id":1, "type":'Casual Leave',"total" : '10', "MaxConsLeave" : '4'},
+                       { "id":2,"type":'Sick Leave',"total" : '10', "MaxConsLeave" : '4'},
+                       { "id":3,"type":'Earned Leave',"total" : '10', "MaxConsLeave" : '4'},
+                       { "id":4,"type":'Leave Without Pay',"total" : '10', "MaxConsLeave" : '4'},
+                       { "id":5,"type":'Maternity Leave',"total" : '10', "MaxConsLeave" : '4'},
+                       { "id":6,"type":'Casual',"total" : '10', "MaxConsLeave" : '4'},
+                       { "id":7,"type":'Marital Leave',"total" : '10', "MaxConsLeave" : '4'}
                   
                    ];
         
         data.forEach(function(element){
-              $('<tr><td>'+element.type+'</td><td>'+element.total+'</td><td>'+element.MaxConsLeave+'</td><td>'+element.Edit+'</td><td>'+element.Delete+'</td><td>').appendTo('#my-request-table tbody');            
+              $('<tr><td>'+element.type+'</td><td>'+element.total+'</td><td>'+element.MaxConsLeave+'</td><td>'+'<button type="button" class="btn btn-success" data-toggle="modal" data-target="#editModal"> Edit </button>'+'</td><td>'+'<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button>'+'</td><td>').appendTo('#my-request-table tbody');            
         })
         </script>
 
