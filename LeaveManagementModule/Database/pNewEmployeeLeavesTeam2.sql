@@ -5,17 +5,16 @@
 create procedure pNewEmployeeLeaves(@EmployeeId int)
 AS
 BEGIN
-insert into tBalanceAccount values (@EmployeeId,15,0,0,0,0);
+insert into tBalanceAccount values (@EmployeeId,1,15,0,0,0,0);
 insert into tBalanceAccount values (@EmployeeId,2,10,0,0,0,0);
 insert into tBalanceAccount values (@EmployeeId,3,15,0,0,0,0);
 insert into tBalanceAccount values (@EmployeeId,4,84,0,0,0,0);
 insert into tBalanceAccount values (@EmployeeId,5,3,0,0,0,0);
 insert into tBalanceAccount values (@EmployeeId,6,5,0,0,0,0);
-insert into tBalanceAccount values (@EmployeeId,1,7,NULL,0,0,0);
+insert into tBalanceAccount values (@EmployeeId,7,NULL,0,0,0,0);
 END
-
-/*EXEC pNewEmployeeLeaves 9;*/
-
+/*EXEC pNewEmployeeLeaves 4;*/
+select * from tBalanceAccount;
 /*un-comment the above statement to execute and see functioning of the procedure.
 Once executed ,result would be incorporated in the respective table*/
 /*select * from pNewEmployeeLeaves*/
