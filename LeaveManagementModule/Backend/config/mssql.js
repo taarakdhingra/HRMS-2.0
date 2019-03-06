@@ -1,6 +1,6 @@
 const config = {
     user: 'sa',
-    password: 'P',
+    password: '',
     server: 'CYG', // You can use 'localhost\\instance' to connect to named instance
     database: 'db',
     options: {
