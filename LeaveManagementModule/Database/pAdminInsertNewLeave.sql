@@ -10,8 +10,10 @@ insert into tLeaves values (@LeaveId,@LeaveType,@MaxConsecutiveLeaves,@TotalLeav
 SET @Status = 1
 SET @Message = 'Created New Leave'
 END
-/*
-EXEC pAdminInsertNewLeave @LeaveId=8,@LeaveType='BIRTHDAY LEAVE',
+
+
+DECLARE @Status INT, @Message VARCHAR(200)
+EXEC pAdminInsertNewLeave @LeaveId=9,@LeaveType='BIRTHDAY LEAVE',
 @MaxConsecutiveLeaves=1,@TotalLeaves=1,@Description='Birthday is a special occassion 
-so enjoy your day as you want. '
-*/
+so enjoy your day as you want',@Status = @Status output ,@Message=@Message output 
+

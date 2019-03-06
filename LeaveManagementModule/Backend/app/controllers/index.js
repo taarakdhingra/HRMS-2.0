@@ -1,7 +1,9 @@
 var employee = require('./employee')
+var admin = require('./admin')
 
 module.exports = {
 
-   employee: employee
+   employee: employee,
+   admin:admin
 
 };

@@ -1,6 +1,6 @@
 var router = require('express').Router();
 var sGrid = require('../../sendgrid');
-const sql = require('mssql');
+const sql = require('../../mssql');
 var mssqlConfig = require('../../config/mssql');
 
 /*let config =
