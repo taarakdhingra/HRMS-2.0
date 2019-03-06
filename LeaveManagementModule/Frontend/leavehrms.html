@@ -63,15 +63,38 @@
                     </li>
 
                 </ul>
+                
                 <!-- <form class="form-inline my-2 my-lg-0">
 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 </form>-->
             </div>
-        </nav>
+            </nav>
+            <br><br>
+        
+<!--
+            <div id="alert-success" class="container alert alert-success alert-dismissible fade show" role="alert">
+   Leave Request Submitted
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+           </div>
+-->
+            
+<!--
+          <div id="alert-warning" class="container alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>Leave Request Cancelled</strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+           </div>
+-->
+        <span id="alert_messages"> </span>
+            
         <div class="table-container container">
             <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                 <li class="nav-item">
+                    
                     <a class="nav-link active" id="pills-requests-tab" data-toggle="pill" href="#pills-requests" role="tab" aria-controls="pills-requests" aria-selected="true">My Requests</a>
                 </li>
                 <li class="nav-item">
@@ -86,9 +109,11 @@
                 <li class="nav-item">
                     <a class="nav-link" id="pills-holiday-tab" data-toggle="pill" href="#pills-holiday" role="tab" aria-controls="pills-holiday" aria-selected="false">Holiday List</a>
                 </li>
+<!--
                 <li class="nav-item">
                     <a class="nav-link" id="pills-teams-requests-tab" data-toggle="pill" href="#pills-teams-requests" role="tab" aria-controls="pills-holiday" aria-selected="false">My Teams Request</a>
                 </li>
+-->
             </ul>
             <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-requests" role="tabpanel" aria-labelledby="pills-requests-tab">
@@ -101,10 +126,9 @@
                                     <th>Type</th>
                                     <th>Starting</th>
                                     <th>Ending</th>
-                                    <th>No of Days</th>
                                     <th>Status</th>
-                                    <th>By</th>
-                                    <th>Request Sent To</th>
+                                    <!--<th>Approved by</th>
+                                    <th>Sent to</th>-->
                                 </tr>
                             </thead>
                             <tbody>
@@ -154,11 +178,8 @@
                                     <th>Type</th>
                                     <th>Starting</th>
                                     <th>Ending</th>
-                                    <th>No of Days</th>
                                     <th>Status</th>
-                                    <th>By</th>
-                                    <th>Request Sent To</th>
-                                </tr>
+                                    </tr>
                             </thead>
                             <tbody>
                             </tbody>
@@ -227,6 +248,7 @@
                         </table>
                     </div>
                 </div>
+<!--
                 <div class="tab-pane fade" id="pills-teams-requests" role="tabpanel" aria-labelledby="pills-teams-requests-tab">
                     <div class="table-responsive">
                         <table id="my-teams-requests-table" class=" table">
@@ -262,8 +284,9 @@
                         </ul>
                     </nav>
                 </div>
+-->
             </div>
-
+                       
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -273,44 +296,49 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body">
-                            <form class="leave-request-form">
-                                <div class="form-group">
-                                    <label for="recipient-name" class="col-form-label">Leave Type</label>
-                                    <select class="custom-select">
-                                        <option selected>Select Leave Type</option>
-                                        <option value="1">Sick</option>
-                                        <option value="2">Earned Leave</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="recipient-name" class="col-form-label">Start Date</label>
-                                    <input type="date" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="recipient-name" class="col-form-label">End Date</label>
-                                    <input type="date" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="message-text" class="col-form-label">Reason:</label>
-                                    <textarea class="form-control" id="message-text"></textarea>
-                                </div>
-                            </form>
-                        </div>
+                        
+                            <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">Leave Type</label>
+                                        <select id="leave-type-select" class="custom-select" required>
+                                            <option>Select Leave Type</option>
+                                            <option value="1">Sick</option>
+                                            <option value="2">Earned Leave</option>
+                                        </select>
+                                    </div>
+                                <form class="leave-request-form">
+                                     <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">Start Date</label>
+                                        <input id="startDate" type="date" class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">End Date</label>
+                                        <input id="endDate" type="date" class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="message-text" class="col-form-label">Reason:</label>
+                                        <textarea id ="reason" class="form-control" id="message-text" required></textarea>
+                                    </div>
+                                </form>
+                            </div>
+                        
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Confirm</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="alert-warning">Close</button>
+                            <button type="button" id="confirm-leave-btn" type="button" class="btn btn-primary">Submit</button>
                         </div>
+                        
+                     </div>
                     </div>
                 </div>
             </div>
+
         </div>
        
+
         <!-- Optional JavaScript -->
 
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script
-                src="https://code.jquery.com/jquery-3.3.1.min.js"
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"
                 integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
                 crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -321,45 +349,95 @@
 
 
             $(document).ready(function(){
+                var userId= 1;
+                var managerId = 3;
                 console.log("document ready");
 
-                $.ajax({
-                    url: baseURL + "/employees/1/leaves/requests",
+               /* $.ajax({
+                    url: baseURL + "/employees/"+userId+"/leaves/requests",
                     type:"GET",
                     success: function(data){
 
-                        data.leaves.forEach(function(element){
-                            $('<tr><td>'+element.type+'</td><td>'+element.startDate+'</td><td>'+element.endDate+'</td><td>'+element.nDays+'</td><td>'+element.status+'</td><td>'+element.by+'</td><td>'+element.request+'</td></tr>').appendTo('#my-request-table tbody');            
+                        console.log(data);
+                        data.employeeRequests.forEach(function(element){
+                            $('<tr><td>'+element.LeaveType+'</td><td>'+element.StartDate.substring(0,9)+'</td><td>'+element.EndDate.substring(0,9)+'</td><td>'+element.Status+'</td></tr>').appendTo('#my-request-table tbody');
+                            
+                        })
+                    }
+
+                });*/
+                
+                $('#confirm-leave-btn').click(function(){
+                    
+                
+                    $.ajax({
+                    url: baseURL + "/employees/"+userId+"/leaves",
+                    type:"POST",
+                    contentType:'application/json',
+                    data: JSON.stringify({
+                        employeeId : 1,
+                        leaveId: $('#leave-type-select').val() ,
+                        startDate: $('#startDate').val(),
+                        endDate : $('#endDate').val(),
+                        reason: $('#reason').val()
+                    }),                        
+                        
+                    success : function(data){
+                        console.log(data); 
+                        if(data.status == 1)
+                          {  alert('done');
+                             $('#exampleModal').modal('toggle');   
+                            $('#alert_messages').append(' <div id="alert-success" class="container alert alert-success alert-dismissible fade show" role="alert">'+ data.message +'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+                            }
+                    },
+                        
+                    error : function(response){
+                        let data = response.responseJSON;
+                        console.log(data); 
+                        if(data.status == 0)
+                          {  alert('not done');
+                             $('#exampleModal').modal('toggle');   
+                            $('#alert_messages').append(' <div id="alert-danger" class="container alert alert-danger alert-dismissible fade show" role="alert">'+ data.message +'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+                            }
+                    }
+                        
+                });
+                    
+                    
+                })
+               
+
+
+               /* $.ajax({
+
+                    url: baseURL + "/employees/"+userId+"/leaves",
+                    type:"GET",
+                    success: function(data){
+                        console.log(data);
+
+                        data.employeeBalanceLeaves.forEach(function(element){
+                            $('<tr><td>'+element.LeaveType+'</td><td>'+element.LeavesTaken+'</td><td>'+element.Balance+'</td><td>'+element.Pending+'</td><td>'+element.Approved+'</td><td>'+element.Cancelled +'</td></tr>').appendTo('#my-balance-table tbody');            
                         })
                     }
 
                 });
-
-
+                
                 $.ajax({
-                    url: baseURL + "/employees/1/leaves",
+
+                    url: baseURL + "/employees/"+userId+"/leaves/requests/status/pending",
                     type:"GET",
                     success: function(data){
 
-                        data.leaves.forEach(function(element){
-                            $('<tr><td>'+element.type+'</td><td>'+element.total+'</td><td>'+element.balance+'</td><td>'+element.pending+'</td><td>'+element.approved+'</td><td>'+element.rejected +'</td></tr>').appendTo('#my-balance-table tbody');            
+                        data.employeeRequests.forEach(function(element){
+                            $('<tr><td>'+element.LeaveType+'</td><td>'+element.StartDate.substring(0,9)+'</td><td>'+element.EndDate.substring(0,9)+'</td><td>'+element.Status+'</td></tr>').appendTo('#my-open-table tbody');            
                         })
                     }
 
-                });
+                });*/
+                
                 $.ajax({
-                    url: baseURL + "/employees/1/leaves/requests/status/Open",
-                    type:"GET",
-                    success: function(data){
 
-                        data.leaves.forEach(function(element){
-                            $('<tr><td>'+element.type+'</td><td>'+element.startDate+'</td><td>'+element.endDate+'</td><td>'+element.nDays+'</td><td>'+element.status+'</td><td>'+element.by+'</td><td>'+element.request+'</td></tr>').appendTo('#my-open-table tbody');            
-                        })
-                    }
-
-                });
-                $.ajax({
-                    url: baseURL + "/employees/1/leaves/requests/status/Closed",
+                    url: baseURL + "/employees/"+userId+"/leaves/requests/status/",
                     type:"GET",
                     success: function(data){
                         console.log(data);
@@ -370,7 +448,8 @@
                     }
 
                 });
-                $.ajax({
+                
+                /* $.ajax({
                     url: baseURL + "/holidays",
                     type:"GET",
                     success: function(data){
@@ -385,16 +464,16 @@
 
 
                 $.ajax({
-                    url: baseURL + "/employees/1/leaves/requests",
+
+                    url: baseURL + "/manager/"+managerId+"/teams/requests",
                     type:"GET",
                     success: function(data){
-
-                        data.leaves.forEach(function(element){
+                         data.leaves.forEach(function(element){
                             $('<tr><td>'+element.type+'</td><td>'+element.startDate+'</td><td>'+element.endDate+'</td><td>'+element.nDays+'</td><td>'+element.status+'</td><td>'+element.by+'</td><td>'+element.request+'</td><td><button type="button" class="btn btn-success btn-sm">Approve</button></td><td><button type="button" class="btn btn-danger btn-sm">Reject</button></td></tr>').appendTo('#my-teams-requests-table tbody');            
                         })
                     }
 
-                });
+                });*/
             });
             
             
@@ -402,9 +481,5 @@
 
 
         </script>
-
     </body>
 </html>
-
-
-
