@@ -19,7 +19,17 @@ AND tEmployeeLeaves.EmployeeId=tBalanceAccount.EmployeeId
 where tBalanceAccount.EmployeeId=@EmployeeId ;
  
 select * from fUserLeaveDetail(1);
-
+/*this function will provide users request with the leave name and the manager to whom user has send request to*/
+create function fUserLeaveAll(@EmployeeId int)
+RETURNS TABLE
+AS RETURN
+select tEmployeeLeaves.Status,tEmployeeLeaves.StartDate,tEmployeeLeaves.EndDate,
+Employee.FirstName,tLeaves.LeaveType from tEmployeeLeaves 
+INNER JOIN tLeaves ON tLeaves.LeaveId=tEmployeeLeaves.LeaveId INNER JOIN Employee 
+on tEmployeeLeaves.ManagerId=Employee.EmployeeId where tEmployeeLeaves.EmployeeId=@EmployeeId ;
+select * from fUserLeaveAll (1);
+select * from tEmployeeLeaves;
+select FirstName from Employee where EmployeeId=3;
 /* function for leave details*/
 create function fUserLeaveBalance(@EmployeeId int)
 returns TABLE
@@ -81,13 +91,7 @@ from tEmployeeLeaves WHERE EmployeeId=@EmployeeId;
 
 select * from fUserRequests(1);
 
-create function fUserSeeLeavesApproved(@EmployeeId INT)
-RETURNS TABLE
-AS
-RETURN
-select
-(select LeaveType from tLeaves where tLeaves.LeaveId=tEmployeeLeaves.LeaveId)as LeaveType,StartDate,EndDate,Status
-from tEmployeeLeaves WHERE EmployeeId=@EmployeeId AND Status='approved' ; 
+
 
 select * from fUserSeeLeavesApproved(2);
 select * from tBalanceAccount;
@@ -106,4 +110,13 @@ select
 from tEmployeeLeaves WHERE EmployeeId=@EmployeeId AND Status=@Status ; 
 
 select * from fUserLeavesPerStatus(1,'pending');
+/*using this function manager can see all the leaves that has been raised by members of the team */
+create function fCMLeaveAll(@ManagerId int)
+RETURNS TABLE
+AS RETURN
+select tEmployeeLeaves.Status,tEmployeeLeaves.StartDate,tEmployeeLeaves.Reason,tEmployeeLeaves.EndDate,
+Employee.FirstName,tLeaves.LeaveType from tEmployeeLeaves 
+INNER JOIN tLeaves ON tLeaves.LeaveId=tEmployeeLeaves.LeaveId INNER JOIN Employee 
+on tEmployeeLeaves.ManagerId=Employee.EmployeeId where tEmployeeLeaves.ManagerId=@ManagerId ;
 
+select * from fCMLeaveAll(2)
