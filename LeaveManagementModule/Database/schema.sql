@@ -139,10 +139,12 @@ values(
 
 select * from Employee;
 /* details of leaves request raised by an employee along with date time to know when it was generated*/
- create table tEmployeeLeaves(EmployeeId int foreign key references Employee(EmployeeId),
+ create table tEmployeeLeaves(EmployeeLeavesId int primary key identity(1,1),EmployeeId int foreign key references Employee(EmployeeId),
   LeaveId int foreign key references tLeaves(LeaveId),
   Status varchar(50),StartDate DATE,EndDate DATE,Reason varchar(1000),RequestTime datetime,ManagerId int );
   insert into tEmployeeLeaves values(1,1,'pending','2019-01-19','2019-01-15','attend function',getdate(),3);
+    insert into tEmployeeLeaves values(2,2,'pending','2019-01-19','2019-01-15','attend function',getdate(),2);
+
 
   
 
