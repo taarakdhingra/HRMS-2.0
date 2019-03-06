@@ -91,13 +91,7 @@ from tEmployeeLeaves WHERE EmployeeId=@EmployeeId;
 
 select * from fUserRequests(1);
 
-/*create function fUserSeeLeavesApproved(@EmployeeId INT)
-RETURNS TABLE
-AS
-RETURN
-select
-(select LeaveType from tLeaves where tLeaves.LeaveId=tEmployeeLeaves.LeaveId)as LeaveType,StartDate,EndDate,Status
-from tEmployeeLeaves WHERE EmployeeId=@EmployeeId AND Status='approved' ; */
+
 
 select * from fUserSeeLeavesApproved(2);
 select * from tBalanceAccount;
@@ -116,5 +110,13 @@ select
 from tEmployeeLeaves WHERE EmployeeId=@EmployeeId AND Status=@Status ; 
 
 select * from fUserLeavesPerStatus(1,'pending');
+/*using this function manager can see all the leaves that has been raised by members of the team */
+create function fCMLeaveAll(@ManagerId int)
+RETURNS TABLE
+AS RETURN
+select tEmployeeLeaves.Status,tEmployeeLeaves.StartDate,tEmployeeLeaves.Reason,tEmployeeLeaves.EndDate,
+Employee.FirstName,tLeaves.LeaveType from tEmployeeLeaves 
+INNER JOIN tLeaves ON tLeaves.LeaveId=tEmployeeLeaves.LeaveId INNER JOIN Employee 
+on tEmployeeLeaves.ManagerId=Employee.EmployeeId where tEmployeeLeaves.ManagerId=@ManagerId ;
 
-
+select * from fCMLeaveAll(2)
