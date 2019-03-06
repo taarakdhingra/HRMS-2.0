@@ -11,7 +11,12 @@ const apiRoutes = () => {
     router.post('/employees/:id/leaves',controllers.employee.createLeave)
     router.get('/employees/:id/leaves',controllers.employee.getBalanceLeaves)
     router.get('/holidays',controllers.employee.getHolidaysList);
-
+    //manager routes
+    router.get('/manager/:id/teams/requests',controllers.employee.getManagerTeamRequests);
+    router.post('/manager/:id/teams/requests/:requestId',controllers.employee.managerAcceptRejectRequest);
+    
+    
+    
 
     return router;
 
