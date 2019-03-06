@@ -12,6 +12,10 @@ const apiRoutes = () => {
     router.get('/employees/:id/leaves',controllers.employee.getBalanceLeaves)
     router.get('/holidays',controllers.employee.getHolidaysList);
 
+    router.post('/admin/leaves',controllers.admin.createLeaveType);
+    router.put('/admin/leaves',controllers.admin.updateLeaveType);
+    router.delete('/admin/leaves/:id',controllers.admin.deleteLeaveType);
+
 
     return router;
 
