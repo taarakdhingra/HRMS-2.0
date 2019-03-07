@@ -1,5 +1,6 @@
 /*procedure have certain conditions which must be fulfilled for an employee to raise a leave request.
 calling another stored procedure named leave update where employee raises a leave request and records manipulation is done*/
+
 create procedure pConditionForLeave
 	@EmployeeId int,
 	@LeaveId int,
@@ -57,9 +58,14 @@ BEGIN
 END
 /*
  DECLARE @Status INT, @Message VARCHAR(200)
- EXEC pConditionForLeave @EmployeeId=1,@LeaveId=1, @StartDate='2019-01-19',@EndDate='2019-01-20',@Reason='attend function',@Status = @Status output ,@Message=@Message output
+ EXEC pConditionForLeave @EmployeeId=2,@LeaveId=3, @StartDate='2019-02-05',@EndDate='2019-02-08',
+ @Reason='high fever',@Status = @Status output ,@Message=@Message output
  SELECT @Status as 'Status',@Message as 'Message' 
  */
-
+ select * from tBalanceAccount;
 -- Drop the stored procedure called 'pConditionForLeave' 
 -- DROP PROCEDURE pConditionForLeave
+/*select * from tBalanceAccount;*/
+select * from tLeaves;
+select * from tEmployeeLeaves;
+select EmployeeId,LeaveId,Balance,LeavesTaken,Approved,Cancelled from tBalanceAccount

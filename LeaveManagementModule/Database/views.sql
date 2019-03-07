@@ -3,7 +3,7 @@
 
 
 /* function so that user's leaves record*/
-drop function fUserLeaveDetail;
+
 create function fUserLeaveDetail(@EmployeeId int)
 returns TABLE
 AS
@@ -20,6 +20,7 @@ where tBalanceAccount.EmployeeId=@EmployeeId ;
  
 select * from fUserLeaveDetail(1);
 /*this function will provide users request with the leave name and the manager to whom user has send request to*/
+/*IT WILL SHOW ALL REUESTS*/
 create function fUserLeaveAll(@EmployeeId int)
 RETURNS TABLE
 AS RETURN
@@ -104,11 +105,20 @@ select * from ProjectTeamDetails;
 RETURNS TABLE
 AS
 RETURN
+IF(@Status='closed')
+BEGIN
 
 select
 (select LeaveType from tLeaves where tLeaves.LeaveId=tEmployeeLeaves.LeaveId)as LeaveType,StartDate,EndDate,Status
-from tEmployeeLeaves WHERE EmployeeId=@EmployeeId AND Status=@Status ; 
-
+from tEmployeeLeaves WHERE EmployeeId=@EmployeeId AND Status='cancelled' OR Status='approved' ; 
+END
+IF(@Status='open')
+BEGIN
+select
+(select LeaveType from tLeaves where tLeaves.LeaveId=tEmployeeLeaves.LeaveId)as LeaveType,StartDate,EndDate,Status
+from tEmployeeLeaves WHERE EmployeeId=@EmployeeId AND Status='pending' ; 
+END
+end
 select * from fUserLeavesPerStatus(1,'pending');
 /*using this function manager can see all the leaves that has been raised by members of the team */
 create function fCMLeaveAll(@ManagerId int)
@@ -119,4 +129,25 @@ Employee.FirstName,tLeaves.LeaveType from tEmployeeLeaves
 INNER JOIN tLeaves ON tLeaves.LeaveId=tEmployeeLeaves.LeaveId INNER JOIN Employee 
 on tEmployeeLeaves.ManagerId=Employee.EmployeeId where tEmployeeLeaves.ManagerId=@ManagerId ;
 
-select * from fCMLeaveAll(2)
+select * from fCMLeaveAll(2);
+
+ create function fUserCloseRequest(@EmployeeId INT)
+RETURNS TABLE
+AS
+RETURN
+
+select
+(select LeaveType from tLeaves where tLeaves.LeaveId=tEmployeeLeaves.LeaveId)as LeaveType,StartDate,EndDate,Status
+from tEmployeeLeaves WHERE EmployeeId=@EmployeeId AND Status='approved' OR Status='cancelled' ; 
+
+SELECT * FROM fUserCloseRequest(4);
+
+ create function fUserOpenRequest(@EmployeeId INT)
+RETURNS TABLE
+AS
+RETURN
+
+select
+(select LeaveType from tLeaves where tLeaves.LeaveId=tEmployeeLeaves.LeaveId)as LeaveType,StartDate,EndDate,Status
+from tEmployeeLeaves WHERE EmployeeId=@EmployeeId AND Status='pending' ; 
+select * from fUserOpenRequest(1);
